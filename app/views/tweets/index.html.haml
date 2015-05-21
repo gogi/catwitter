@@ -1,23 +1,23 @@
-%h1 Listing tweets
+%h1 Meowes
 
-%table
+%table.table
   %thead
     %tr
-      %th Text
-      %th User
-      %th
       %th
       %th
 
   %tbody
     - tweets.each do |tweet|
       %tr
-        %td= tweet.text
-        %td= tweet.user
-        %td= link_to 'Show', tweet
-        %td= link_to 'Edit', edit_tweet_path(tweet)
-        %td= link_to 'Destroy', tweet, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td
+          %p= tweet.text
+          %p= "Meowed by #{tweet.author} at #{tweet.created_at}."
+        .button-group
+          %td
+            = link_to 'Show', tweet, class: "btn btn-default"
+            = link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-primary"
+            = link_to 'Destroy', tweet, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
 
 %br
 
-= link_to 'New Tweet', new_tweet_path
+= link_to 'New Tweet', new_tweet_path, class: "btn btn-success"
