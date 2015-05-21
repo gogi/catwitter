@@ -25,7 +25,6 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     tweet.user = current_user
-    tweet.author = User.find(tweet.user_id).name
 
     respond_to do |format|
       if tweet.save

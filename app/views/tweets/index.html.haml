@@ -11,7 +11,7 @@
       %tr
         %td
           %p= tweet.text
-          %p= "Meowed by #{tweet.author} at #{tweet.created_at}."
+          %p= "Meowed by #{tweet.user.name} at #{tweet.created_at}."
         .button-group
           %td
             = link_to 'Show', tweet, class: "btn btn-default"
