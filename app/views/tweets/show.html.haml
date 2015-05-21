@@ -2,11 +2,11 @@
 
 %p
   %b Text:
-  = @tweet.text
+  = tweet.text
 %p
   %b User:
-  = @tweet.user
+  = tweet.user
 
-= link_to 'Edit', edit_tweet_path(@tweet)
+= link_to 'Edit', edit_tweet_path(tweet)
 \|
 = link_to 'Back', tweets_path
