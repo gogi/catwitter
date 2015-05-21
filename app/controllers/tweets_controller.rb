@@ -1,9 +1,7 @@
 class TweetsController < ApplicationController
-  expose(:tweet)
+  expose(:tweet, attributes: :tweet_params)
   expose(:tweets)
   expose(:user)
-
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -26,7 +24,6 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    tweet = Tweet.new(tweet_params)
     tweet.user = current_user
     tweet.author = User.find(tweet.user_id).name
 
@@ -44,10 +41,9 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1
   # PATCH/PUT /tweets/1.json
   def update
-    params.permit!
     respond_to do |format|
-      if tweet.update
-        format.html { redirect_to tweets, notice: 'Tweet was successfully updated.' }
+      if tweet.save
+        format.html { redirect_to tweets_path, notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: tweet }
       else
         format.html { render :edit }
@@ -61,19 +57,15 @@ class TweetsController < ApplicationController
   def destroy
     tweet.destroy
     respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
+      format.html { redirect_to tweets_path, notice: 'Tweet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      tweet = Tweet.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tweet_params
-      params.require(:tweet).permit(:text, :user_id)
+      params.require(:tweet).permit(:text)
     end
 end
