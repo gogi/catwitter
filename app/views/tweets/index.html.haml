@@ -17,7 +17,5 @@
             = link_to 'Show', tweet, class: "btn btn-default"
             = link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-primary"
             = link_to 'Destroy', tweet, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
-
+  %p= render 'form'
 %br
-
-= link_to 'New Tweet', new_tweet_path, class: "btn btn-success"
