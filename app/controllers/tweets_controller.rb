@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   expose(:tweet)
   expose(:tweets)
+  expose(:user)
 
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
@@ -26,6 +27,8 @@ class TweetsController < ApplicationController
   # POST /tweets.json
   def create
     tweet = Tweet.new(tweet_params)
+    tweet.user = current_user
+    tweet.author = User.find(tweet.user_id).name
 
     respond_to do |format|
       if tweet.save
@@ -41,9 +44,10 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1
   # PATCH/PUT /tweets/1.json
   def update
+    params.permit!
     respond_to do |format|
-      if tweet.update(tweet_params)
-        format.html { redirect_to tweet, notice: 'Tweet was successfully updated.' }
+      if tweet.update
+        format.html { redirect_to tweets, notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: tweet }
       else
         format.html { render :edit }
