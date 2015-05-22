@@ -18,7 +18,7 @@
                 %span.author
                   = "Meowed by "
                   = link_to tweet.user.name, user_path(tweet.user)
-                  = "on #{tweet.created_at.strftime("%a, %d %B %Y")} at #{tweet.created_at.strftime("%I:%M %p")}."
+                  = "#{time_ago_in_words(tweet.created_at)}."
               .button-group
                 %td
                   = link_to 'Show', tweet, class: "btn btn-default"
