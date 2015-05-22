@@ -1,21 +1,25 @@
 %h1 Meowes
 
 %table.table
-  %thead
-    %tr
-      %th
-      %th
+  %tr
+    %td
+    %td
+      %table.table
+        %thead
+          %tr
+            %th= render 'form'
+            %th
 
-  %tbody
-    - tweets.each do |tweet|
-      %tr
-        %td
-          %p= tweet.text
-          %p= "Meowed by #{tweet.user.name} at #{tweet.created_at}."
-        .button-group
-          %td
-            = link_to 'Show', tweet, class: "btn btn-default"
-            = link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-primary"
-            = link_to 'Destroy', tweet, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
-  %p= render 'form'
-%br
+        %tbody
+          - tweets.each do |tweet|
+            %tr
+              %td
+                %p= tweet.text
+                %p
+                  = "Meowed by #{tweet.user.name} on #{tweet.created_at.strftime("%m-%d-%Y")} at #{tweet.created_at.strftime("%I:%M%p")}."
+              .button-group
+                %td
+                  = link_to 'Show', tweet, class: "btn btn-default"
+                  = link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-primary"
+                  = link_to 'Destroy', tweet, method: :delete, data: { :confirm => 'Are you sure?' }, class: "btn btn-danger"
+    %td= image_tag("kitty.png")
