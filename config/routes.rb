@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :tweets
+  resources :users, only: [:show, :index]
 
   root to: 'visitors#index'
   get '/auth/:provider/callback' => 'sessions#create'
