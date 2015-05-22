@@ -8,6 +8,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'decent_exposure'
+gem 'time_difference', '~> 0.4.2'
+gem 'draper'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
