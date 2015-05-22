@@ -15,8 +15,10 @@
             %tr
               %td
                 %p= tweet.text
-                %p
-                  = "Meowed by #{tweet.user.name} on #{tweet.created_at.strftime("%m-%d-%Y")} at #{tweet.created_at.strftime("%I:%M%p")}."
+                %span.author
+                  = "Meowed by "
+                  = link_to tweet.user.name, user_path(tweet.user)
+                  = "on #{tweet.created_at.strftime("%a, %d %B %Y")} at #{tweet.created_at.strftime("%I:%M %p")}."
               .button-group
                 %td
                   = link_to 'Show', tweet, class: "btn btn-default"
